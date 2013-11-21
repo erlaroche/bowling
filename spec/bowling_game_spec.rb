@@ -49,6 +49,18 @@ describe BowlingGame do
         expect(game.score).to eq(26)
       end
     end
+
+    context 'when a spare is thrown in the last frame' do
+      it 'records the frame score for one bonus ball' do
+        18.times { game.roll(0) }
+        game.roll(7)
+        game.roll(3)
+        game.roll(8)
+
+        expect(game.score).to eq(26)
+      end
+    end
+
   
 
   end

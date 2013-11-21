@@ -24,12 +24,10 @@ class BowlingGame
 
       if strike?
         score_strike
-      elsif @roll + @next_roll == 10
-        @total_score += 10 + @rolls[@current_roll + 2]
-        @current_roll += 2
+      elsif spare?
+        score_spare
       else
-        @total_score += @roll + @next_roll
-        @current_roll += 2
+        score_reg
       end
     end
 
@@ -51,6 +49,11 @@ class BowlingGame
     @roll == 10
   end
 
+  #Returns true if the current roll is a spare, false otherwise.
+  def spare?
+    @roll + @next_roll == 10
+  end
+
 
   # Scores a strike frame, and adds it to the total score for the game.
   #
@@ -58,5 +61,15 @@ class BowlingGame
   def score_strike
     @total_score += 10 + @next_roll + @rolls[@current_roll + 2]
     @current_roll += 1
+  end
+
+  def score_spare
+    @total_score += 10 + @rolls[@current_roll + 2]
+    @current_roll += 2
+  end
+
+  def score_reg
+    @total_score += @roll + @next_roll
+    @current_roll += 2
   end
 end
