@@ -4,5 +4,11 @@ class BowlingGame
   def initialize
     @rolls = []
   end
+
+  def roll(pins)
+  end
+
+ 
+
 end
 
